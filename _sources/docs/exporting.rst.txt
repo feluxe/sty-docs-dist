@@ -1,0 +1,47 @@
+
+
+Exporting / Copying
+===================
+
+
+``as_dict`` method
+~~~~~~~~~~~~~~~~~~
+
+.. automethod:: sty.Register.as_dict
+
+**Example:**
+
+.. literalinclude:: ../../sty/tests/docs/exporting.py
+   :language: py
+   :start-after: Example("as dict")
+   :end-before: # ===== End
+
+
+
+``as_namedtuple`` method
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. automethod:: sty.Register.as_namedtuple
+
+**Example:**
+
+.. literalinclude:: ../../sty/tests/docs/exporting.py
+   :language: py
+   :start-after: Example("as namedtuple")
+   :end-before: # ===== End
+
+
+.. _copy_method:
+
+``copy`` method
+~~~~~~~~~~~~~~~
+
+.. automethod:: sty.Register.copy
+
+**Example:**
+
+.. literalinclude:: ../../sty/tests/docs/exporting.py
+   :language: py
+   :start-after: Example("copy")
+   :end-before: # ===== End
+
