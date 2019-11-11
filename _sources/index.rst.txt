@@ -1,4 +1,3 @@
-Foo
 
 .. meta::
    :description: String styling for your terminal
