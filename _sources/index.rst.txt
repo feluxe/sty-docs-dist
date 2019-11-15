@@ -1,4 +1,5 @@
 
+
 .. meta::
    :description: String styling for your terminal
    :keywords: sty, python, terminal, style, colors, coloring

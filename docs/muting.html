@@ -177,6 +177,20 @@
             
   <div class="section" id="muting">
 <h1>Muting<a class="headerlink" href="#muting" title="Permalink to this headline">¶</a></h1>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If you use sty for a <em>library</em> that is shared among other projects, I highly
+suggest not to mute the “global” register-objects (sty.fg,
+sty.bg, sty.ef, sty.rs) directly, because that might cause conflicts
+with other packages that share the same sty dependency.</p>
+<p>If you want to mute sty’s register-obejcts in a <em>library</em> you should either:</p>
+<ul class="simple">
+<li><p>Use the <a class="reference internal" href="exporting.html#copy-method"><span class="std std-ref">copy method</span></a> to create copies of them, which
+you can mute safely.</p></li>
+<li><p><a class="reference internal" href="customizing.html#extending-register-classes-and-creating-new-instances"><span class="std std-ref">Create custom register-classes</span></a>
+and create new register-objects from them, which you can mute safely.</p></li>
+</ul>
+</div>
 <div class="section" id="the-mute-and-unmute-methods">
 <h2>The <code class="docutils literal notranslate"><span class="pre">mute</span></code> and <code class="docutils literal notranslate"><span class="pre">unmute</span></code> methods<a class="headerlink" href="#the-mute-and-unmute-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="method">

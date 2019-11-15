@@ -9,15 +9,19 @@ following chapters.
 
 .. CAUTION::
 
-   If you create a library that is shared among other projects, I highly
-   suggest not to customize the "global" register-objects (sty.fg,
-   sty.bg, sty.ef, sty.rs) directly, because that might cause conflicts
-   with other packages that share the same sty dependency within the
-   same project.
+   If you use sty for a *library* that is shared among other projects, I highly
+   suggest not to customize the "global" register-objects (sty.fg ,sty.bg,
+   sty.ef, sty.rs) directly, because that might cause conflicts
+   with other packages that share the same sty dependency.
 
-   If you want to customize sty's default register-objects, you should either
-   :ref:`copy <copy_method>` them first or
-   :ref:`inherit their register classes and create new instances <Extending register-classes and creating new instances>`.
+   If you want to customize sty's register-objects in a *library* you should
+   either:
+
+   * Use the :ref:`copy method <copy_method>` to create copies of them, which
+     you can customize safely.
+   * :ref:`Create custom register-classes <Extending register-classes and creating new instances>`
+     and create new customized register-objects from them.
+
 
 
 Add custom styles to a register-object
@@ -34,7 +38,7 @@ In order to add new or update existing styles for a register-object, you can sim
 
 There are multiple :ref:`Render Types` that you can use to define different styles.
 
-The ``Style()`` type allows you to compose styles from multiple rules, as well as from existing styling rules:
+The ``Style()`` type allows you to compose styles from multiple new rules, as well as from existing register-objects:
 
 .. literalinclude:: ../../sty/tests/docs/customizing.py
    :language: py
@@ -90,14 +94,14 @@ Remember that you can call the register-objects like a function? You can change 
 Extending register-classes and creating new instances
 -----------------------------------------------------
 
-If you want to set a larger register of custom attributes, it may be
-more convenient to extend the default register-classes and create new
-register-objects from them.
+If you want to create a large register of custom styles, it may be convenient
+to extend the default register-classes and create new register-objects from them.
 
 Customizing sty this way has some advantages:
 
 * You get better editor support (auto-completion, mypy, pylint, etc) for the register-objects.
-* You aren't mutating sty's global register-objects (``sty.ef``, ``sty.fg``, etc.). This is important for library projects to prevent compatibility issues.
+* You aren't mutating sty's *global* register-objects (``sty.ef``, ``sty.fg``, etc.).
+  This is important for library projects to prevent conflicts with other packages that use sty.
 
 .. literalinclude:: ../../sty/tests/docs/customizing.py
    :language: py

@@ -182,14 +182,18 @@ You can also create a complete new register. More on these things in the
 following chapters.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>If you create a library that is shared among other projects, I highly
-suggest not to customize the “global” register-objects (sty.fg,
-sty.bg, sty.ef, sty.rs) directly, because that might cause conflicts
-with other packages that share the same sty dependency within the
-same project.</p>
-<p>If you want to customize sty’s default register-objects, you should either
-<a class="reference internal" href="exporting.html#copy-method"><span class="std std-ref">copy</span></a> them first or
-<a class="reference internal" href="#extending-register-classes-and-creating-new-instances"><span class="std std-ref">inherit their register classes and create new instances</span></a>.</p>
+<p>If you use sty for a <em>library</em> that is shared among other projects, I highly
+suggest not to customize the “global” register-objects (sty.fg ,sty.bg,
+sty.ef, sty.rs) directly, because that might cause conflicts
+with other packages that share the same sty dependency.</p>
+<p>If you want to customize sty’s register-objects in a <em>library</em> you should
+either:</p>
+<ul class="simple">
+<li><p>Use the <a class="reference internal" href="exporting.html#copy-method"><span class="std std-ref">copy method</span></a> to create copies of them, which
+you can customize safely.</p></li>
+<li><p><a class="reference internal" href="#extending-register-classes-and-creating-new-instances"><span class="std std-ref">Create custom register-classes</span></a>
+and create new customized register-objects from them.</p></li>
+</ul>
 </div>
 <div class="section" id="add-custom-styles-to-a-register-object">
 <h2>Add custom styles to a register-object<a class="headerlink" href="#add-custom-styles-to-a-register-object" title="Permalink to this headline">¶</a></h2>
@@ -205,7 +209,7 @@ same project.</p>
 </pre></div>
 </div>
 <p>There are multiple <a class="reference internal" href="#render-types"><span class="std std-ref">Render Types</span></a> that you can use to define different styles.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">Style()</span></code> type allows you to compose styles from multiple rules, as well as from existing styling rules:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Style()</span></code> type allows you to compose styles from multiple new rules, as well as from existing register-objects:</p>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">fg</span><span class="p">,</span> <span class="n">ef</span><span class="p">,</span> <span class="n">rs</span><span class="p">,</span> <span class="n">Style</span><span class="p">,</span> <span class="n">RgbFg</span><span class="p">,</span> <span class="n">Sgr</span>
 
 <span class="n">fg</span><span class="o">.</span><span class="n">blue_bold</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">RgbFg</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">Sgr</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
@@ -373,13 +377,13 @@ is a RGB-call. With this method you can define the render-type for such calls.</
 </div>
 <div class="section" id="extending-register-classes-and-creating-new-instances">
 <h2>Extending register-classes and creating new instances<a class="headerlink" href="#extending-register-classes-and-creating-new-instances" title="Permalink to this headline">¶</a></h2>
-<p>If you want to set a larger register of custom attributes, it may be
-more convenient to extend the default register-classes and create new
-register-objects from them.</p>
+<p>If you want to create a large register of custom styles, it may be convenient
+to extend the default register-classes and create new register-objects from them.</p>
 <p>Customizing sty this way has some advantages:</p>
 <ul class="simple">
 <li><p>You get better editor support (auto-completion, mypy, pylint, etc) for the register-objects.</p></li>
-<li><p>You aren’t mutating sty’s global register-objects (<code class="docutils literal notranslate"><span class="pre">sty.ef</span></code>, <code class="docutils literal notranslate"><span class="pre">sty.fg</span></code>, etc.). This is important for library projects to prevent compatibility issues.</p></li>
+<li><p>You aren’t mutating sty’s <em>global</em> register-objects (<code class="docutils literal notranslate"><span class="pre">sty.ef</span></code>, <code class="docutils literal notranslate"><span class="pre">sty.fg</span></code>, etc.).
+This is important for library projects to prevent conflicts with other packages that use sty.</p></li>
 </ul>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">FgRegister</span><span class="p">,</span> <span class="n">Sgr</span><span class="p">,</span> <span class="n">RgbFg</span>
 
