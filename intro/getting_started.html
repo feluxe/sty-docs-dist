@@ -212,14 +212,16 @@ importing the register-objects directly, like this:</p>
 </div>
 <div class="section" id="a-quick-look-at-the-primitives">
 <h2>A quick look at the primitives:<a class="headerlink" href="#a-quick-look-at-the-primitives" title="Permalink to this headline">¶</a></h2>
-<p>sty provides a bunch of tiny, but flexible primitives (called register-objects) that can be used to style your strings:</p>
+<p>sty provides a bunch of tiny, but flexible primitives (called register-objects)
+that can be used to style your strings:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ef</span></code> (<a class="reference internal" href="../docs/effects.html#anchor-effect-register"><span class="std std-ref">effect-register</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fg</span></code> (<a class="reference internal" href="../docs/coloring.html#anchor-fg-register"><span class="std std-ref">foreground-register</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bg</span></code> (<a class="reference internal" href="../docs/coloring.html#anchor-bg-register"><span class="std std-ref">background-register</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rs</span></code> (<a class="reference internal" href="../docs/resetting.html#anchor-reset-register"><span class="std std-ref">reset-register</span></a>)</p></li>
 </ul>
-<p>Each register-object carries a default selection of attributes, which you can select like this:</p>
+<p>Each register-object carries a default selection of attributes, which you can
+select like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ef</span><span class="o">.</span><span class="n">italic</span>
 <span class="n">fg</span><span class="o">.</span><span class="n">blue</span>
 <span class="n">bg</span><span class="o">.</span><span class="n">green</span>
