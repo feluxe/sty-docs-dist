@@ -6,8 +6,8 @@ If you find another issue which is not in the list below, please report it on th
 
 .. NOTE::
 
-   The issue which you find in the list below are not on sty's side. Some
-   terminal simply do not support certain features.
+   The issues which you find in the list below are not on sty's side. Some
+   terminals simply don't support certain features.
 
 
 Last update: ``2020-02-06``
