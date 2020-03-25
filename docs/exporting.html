@@ -197,7 +197,7 @@
 
 <span class="n">a</span> <span class="o">=</span> <span class="n">fg</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;I have a red fg.&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="p">[</span><span class="s1">&#39;rs&#39;</span><span class="p">]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -216,7 +216,7 @@
 
 <span class="n">a</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">yellow</span> <span class="o">+</span> <span class="s2">&quot;I have a yellow fg.&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -243,13 +243,13 @@ register-classes (sty.fg., sty.bg, sty.ef, sty.rs).</p>
 <span class="n">a</span> <span class="o">=</span> <span class="n">fg_a</span><span class="o">.</span><span class="n">orange</span> <span class="o">+</span> <span class="s2">&quot;I have an orange fg.&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">fg_b</span><span class="o">.</span><span class="n">orange</span> <span class="o">+</span> <span class="s2">&quot;I have an orange fg too.&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;But I have no orange fg, because I&#39;m an earlier copy.&quot;</span>
     <span class="n">fg_c</span><span class="o">.</span><span class="n">orange</span> <span class="o">+</span> <span class="n">msg</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 </pre></div>
 </div>

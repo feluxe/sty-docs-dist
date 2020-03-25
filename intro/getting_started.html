@@ -204,7 +204,7 @@ importing the register-objects directly, like this:</p>
 
 <span class="n">buf</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">orange</span> <span class="o">+</span> <span class="s1">&#39;Yay, Im orange.&#39;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">,</span> <span class="n">qux</span><span class="p">,</span> <span class="n">qui</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">,</span> <span class="n">qux</span><span class="p">,</span> <span class="n">qui</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The code above will print like this in the terminal:</p>
@@ -234,7 +234,7 @@ attributes:</p>
 <span class="n">b</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;Blue text.&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">fg</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">bg</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">254</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;Random colored bg&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">bg</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">fg</span></code> and <code class="docutils literal notranslate"><span class="pre">bg</span></code> are special in the way that they allow you to select
@@ -245,7 +245,7 @@ attributes:</p>
 <span class="c1"># select a 24bit rgb color directly.</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">bg</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;Text with green bg&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">bg</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>I think this is all you need to know to get going. Check out the

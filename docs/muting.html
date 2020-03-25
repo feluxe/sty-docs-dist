@@ -183,7 +183,7 @@
 suggest not to mute the “global” register-objects (sty.fg,
 sty.bg, sty.ef, sty.rs) directly, because that might cause conflicts
 with other packages that share the same sty dependency.</p>
-<p>If you want to mute sty’s register-obejcts in a <em>library</em> you should either:</p>
+<p>If you want to mute sty’s register-objects in a <em>library</em> you should either:</p>
 <ul class="simple">
 <li><p>Use the <a class="reference internal" href="exporting.html#copy-method"><span class="std std-ref">copy method</span></a> to create copies of them, which
 you can mute safely.</p></li>
@@ -196,7 +196,7 @@ and create new register-objects from them, which you can mute safely.</p></li>
 <dl class="method">
 <dt id="sty.Register.mute">
 <code class="sig-prename descclassname">Register.</code><code class="sig-name descname">mute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/primitive.html#Register.mute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Register.mute" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sometimes its useful to disable the formatting for a register-object. You can
+<dd><p>Sometimes it is useful to disable the formatting for a register-object. You can
 do so by invoking this method.</p>
 </dd></dl>
 
@@ -221,7 +221,7 @@ do so by invoking this method.</p>
 <span class="n">e</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;The mute switch is off, so this is green.&#39;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;The mute switch is off, so this is blue.&#39;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -274,7 +274,7 @@ do so by invoking this method.</p>
 <span class="n">c2</span> <span class="o">=</span> <span class="n">bg</span><span class="o">.</span><span class="n">red</span> <span class="o">+</span> <span class="s1">&#39;This bg is red.&#39;</span> <span class="o">+</span> <span class="n">bg</span><span class="o">.</span><span class="n">rs</span>
 <span class="n">c3</span> <span class="o">=</span> <span class="n">ef</span><span class="o">.</span><span class="n">italic</span> <span class="o">+</span> <span class="s1">&#39;This text is italic&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">italic</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">b3</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">,</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b2</span><span class="p">,</span> <span class="n">b3</span><span class="p">,</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

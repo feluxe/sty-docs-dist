@@ -184,21 +184,25 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Define SGR styling rule.</span>
 
+<span class="sd">    More info about SGR parameters: https://en.wikipedia.org/wiki/ANSI_escape_code#SGR</span>
+
 <span class="sd">    :param num: A SGR number.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="EightbitFg"><a class="viewcode-back" href="../../docs/customizing.html#sty.EightbitFg">[docs]</a><span class="k">class</span> <span class="nc">EightbitFg</span><span class="p">(</span><span class="n">RenderType</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Define Eightbit Forground.</span>
+<span class="sd">    Define Eightbit Foreground.</span>
+
+<span class="sd">    More info about 8-bit terminal colors: https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit</span>
 
 <span class="sd">    :param num: Eightbit number.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span><span class="p">]</span></div>
 
 
@@ -206,10 +210,12 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Define Eightbit Background.</span>
 
+<span class="sd">    More info about 8-bit terminal colors: https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit</span>
+
 <span class="sd">    :param num: Eightbit number.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">num</span><span class="p">]</span></div>
 
 
@@ -217,12 +223,14 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Define RGB Foreground.</span>
 
+<span class="sd">    More info about 24-bit terminal colors: https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit</span>
+
 <span class="sd">    :param r: Red.</span>
 <span class="sd">    :param g: Green.</span>
 <span class="sd">    :param b: Blue.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span></div>
 
 
@@ -230,12 +238,14 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Define RGB Background.</span>
 
+<span class="sd">    More info about 24-bit terminal colors: https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit</span>
+
 <span class="sd">    :param r: Red.</span>
 <span class="sd">    :param g: Green.</span>
 <span class="sd">    :param b: Blue.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span></div>
 
 </pre></div>

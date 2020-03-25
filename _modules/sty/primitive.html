@@ -175,10 +175,10 @@
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">The Register class: Sty&#39;s heart.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">namedtuple</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterable</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">.rendertype</span> <span class="k">import</span> <span class="n">RenderType</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">.rendertype</span> <span class="kn">import</span> <span class="n">RenderType</span>
 
 
 <span class="k">class</span> <span class="nc">Style</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
@@ -198,7 +198,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="n">rules</span>
         <span class="k">return</span> <span class="bp">cls</span>
@@ -242,13 +242,13 @@
 <span class="sd">    created from this class. You can use it to create your own custom registers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">renderfuncs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">RenderType</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eightbit_call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rgb_call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Style</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Style</span><span class="p">]]):</span>
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Style</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Style</span><span class="p">]]):</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Style</span><span class="p">):</span>
 
@@ -262,7 +262,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function is to handle calls such as `fg(42)`, `bg(102, 49, 42)`, `fg(&#39;red&#39;)`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -297,6 +297,8 @@
         <span class="o">*</span><span class="n">rules</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">RenderType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">RenderType</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DEPRECATED: This method will be removed in favour of the Style() type.</span>
+
 <span class="sd">        With this method, you can add or change styles for a register-object.</span>
 
 <span class="sd">        :param name: The field name for the new style.</span>
@@ -308,6 +310,8 @@
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">RenderType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DEPRECATED: This method will be removed in favour of the Style() type.</span>
+
 <span class="sd">        Retrieve styling rules from a register-object.</span>
 <span class="sd">        This is useful in case you want to compose new styles out of existing styles.</span>
 
@@ -317,7 +321,7 @@
 
 <div class="viewcode-block" id="Register.set_eightbit_call"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_eightbit_call">[docs]</a>    <span class="k">def</span> <span class="nf">set_eightbit_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">RenderType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        You can call a register-object directly. A call like this `fg(144)`</span>
+<span class="sd">        You can call a register-object directly. A call like this ``fg(144)``</span>
 <span class="sd">        is a Eightbit-call. With this method you can define the render-type for such calls.</span>
 
 <span class="sd">        :param rendertype: The new rendertype that is used for Eightbit-calls.</span>
@@ -327,7 +331,7 @@
 
 <div class="viewcode-block" id="Register.set_rgb_call"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_rgb_call">[docs]</a>    <span class="k">def</span> <span class="nf">set_rgb_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">RenderType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        You can call a register-object directly. A call like this `fg(10, 42, 255)`</span>
+<span class="sd">        You can call a register-object directly. A call like this ``fg(10, 42, 255)``</span>
 <span class="sd">        is a RGB-call. With this method you can define the render-type for such calls.</span>
 
 <span class="sd">        :param rendertype: The new rendertype that is used for RGB-calls.</span>
@@ -353,7 +357,7 @@
 
 <div class="viewcode-block" id="Register.mute"><a class="viewcode-back" href="../../docs/muting.html#sty.Register.mute">[docs]</a>    <span class="k">def</span> <span class="nf">mute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Sometimes its useful to disable the formatting for a register-object. You can</span>
+<span class="sd">        Sometimes it is useful to disable the formatting for a register-object. You can</span>
 <span class="sd">        do so by invoking this method.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span> <span class="o">=</span> <span class="kc">True</span>
