@@ -22,10 +22,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
 
     
@@ -66,7 +65,7 @@
             
             
               <div class="version">
-                1.0.0-beta.12
+                1.0.0-rc.0
               </div>
             
           
@@ -184,8 +183,8 @@
 <p>These are the default attributes for the <code class="docutils literal notranslate"><span class="pre">sty.rs</span></code> register-object:</p>
 <table class="table-register docutils align-default">
 <colgroup>
-<col style="width: 46%" />
-<col style="width: 54%" />
+<col style="width: 24%" />
+<col style="width: 76%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Attribute</p></th>
@@ -194,34 +193,37 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>rs.all</p></td>
-<td><p>sty.renderfunc.sgr(0)</p></td>
+<td><p>sgr(0)</p></td>
 </tr>
 <tr class="row-odd"><td><p>rs.fg</p></td>
-<td><p>sty.renderfunc.sgr(39)</p></td>
+<td><p>sgr(39)</p></td>
 </tr>
 <tr class="row-even"><td><p>rs.bg</p></td>
-<td><p>sty.renderfunc.sgr(49)</p></td>
+<td><p>sgr(49)</p></td>
 </tr>
 <tr class="row-odd"><td><p>rs.bold_faint</p></td>
-<td><p>sty.renderfunc.sgr(22)</p></td>
+<td><p>sgr(22)</p></td>
 </tr>
 <tr class="row-even"><td><p>rs.faint_bold</p></td>
-<td><p>sty.renderfunc.sgr(22)</p></td>
+<td><p>sgr(22)</p></td>
 </tr>
 <tr class="row-odd"><td><p>rs.italic (alias i)</p></td>
-<td><p>sty.renderfunc.sgr(23)</p></td>
+<td><p>sgr(23)</p></td>
 </tr>
 <tr class="row-even"><td><p>rs.underl (alias u)</p></td>
-<td><p>sty.renderfunc.sgr(24)</p></td>
+<td><p>sgr(24)</p></td>
 </tr>
 <tr class="row-odd"><td><p>rs.blink</p></td>
-<td><p>sty.renderfunc.sgr(25)</p></td>
+<td><p>sgr(25)</p></td>
 </tr>
 <tr class="row-even"><td><p>rs.hidden</p></td>
-<td><p>sty.renderfunc.sgr(28)</p></td>
+<td><p>sgr(28)</p></td>
 </tr>
 <tr class="row-odd"><td><p>rs.strike</p></td>
-<td><p>sty.renderfunc.sgr(29)</p></td>
+<td><p>sgr(29)</p></td>
+</tr>
+<tr class="row-even"><td><p>rs.ef</p></td>
+<td><p>sgr(22), sgr(23), sgr(24), sgr(25), sgr(27), sgr(28), sgr(29)</p></td>
 </tr>
 </tbody>
 </table>

@@ -22,10 +22,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
     
 
     
@@ -64,7 +63,7 @@
             
             
               <div class="version">
-                1.0.0-beta.12
+                1.0.0-rc.0
               </div>
             
           
@@ -176,8 +175,9 @@
 <span class="sd">The Register class: Sty&#39;s heart.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Iterable</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
 <span class="kn">from</span> <span class="nn">.rendertype</span> <span class="kn">import</span> <span class="n">RenderType</span>
 
 
@@ -198,7 +198,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="n">rules</span>
         <span class="k">return</span> <span class="bp">cls</span>
@@ -209,7 +209,7 @@
     <span class="n">rules</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">RenderType</span><span class="p">]]:</span>
 
-    <span class="n">rendered</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">rendered</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">flattened_rules</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">RenderType</span><span class="p">):</span>
@@ -253,7 +253,7 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Style</span><span class="p">):</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span><span class="p">:</span>
-                <span class="n">rendered_style</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                <span class="n">rendered_style</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">rendered</span><span class="p">,</span> <span class="n">rules</span> <span class="o">=</span> <span class="n">_render_rules</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">renderfuncs</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span>
                 <span class="n">rendered_style</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">rendered</span><span class="p">)</span>
@@ -269,7 +269,7 @@
 
         <span class="c1"># # Return empty str if object is muted.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
         <span class="n">len_args</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 
@@ -289,7 +289,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rgb_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">set_style</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -386,8 +386,7 @@
 
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="ow">and</span>\
-               <span class="nb">isinstance</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="nb">str</span><span class="p">):</span>
 
                 <span class="n">items</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">))})</span>
 
@@ -398,14 +397,13 @@
 <span class="sd">        Export color register as namedtuple.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_dict</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;StyleRegister&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())(</span><span class="o">*</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
+        <span class="k">return</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;StyleRegister&quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())(</span><span class="o">*</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Register.copy"><a class="viewcode-back" href="../../docs/exporting.html#sty.Register.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make a deepcopy of a register-object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
-
 </pre></div>
 
            </div>

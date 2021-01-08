@@ -22,10 +22,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
     
 
     
@@ -66,7 +65,7 @@
             
             
               <div class="version">
-                1.0.0-beta.12
+                1.0.0-rc.0
               </div>
             
           
@@ -199,35 +198,35 @@ and create new customized register-objects from them.</p></li>
 <h2>Add custom styles to a register-object<a class="headerlink" href="#add-custom-styles-to-a-register-object" title="Permalink to this headline">¶</a></h2>
 <p>In order to add new or update existing styles for a register-object, you can simply assing a new styling rule to an attribute:</p>
 <p><strong>Example:</strong></p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">fg</span><span class="p">,</span> <span class="n">ef</span><span class="p">,</span> <span class="n">rs</span><span class="p">,</span> <span class="n">Style</span><span class="p">,</span> <span class="n">RgbFg</span><span class="p">,</span> <span class="n">Sgr</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">RgbFg</span><span class="p">,</span> <span class="n">Sgr</span><span class="p">,</span> <span class="n">Style</span><span class="p">,</span> <span class="n">ef</span><span class="p">,</span> <span class="n">fg</span><span class="p">,</span> <span class="n">rs</span>
 
 <span class="n">fg</span><span class="o">.</span><span class="n">my_red</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">RgbFg</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">my_red</span> <span class="o">+</span> <span class="s1">&#39;This text has red fg.&#39;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">my_red</span> <span class="o">+</span> <span class="s2">&quot;This text has red fg.&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>There are multiple <a class="reference internal" href="#render-types"><span class="std std-ref">Render Types</span></a> that you can use to define different styles.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Style()</span></code> type allows you to compose styles from multiple new rules, as well as from existing register-objects:</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">fg</span><span class="p">,</span> <span class="n">ef</span><span class="p">,</span> <span class="n">rs</span><span class="p">,</span> <span class="n">Style</span><span class="p">,</span> <span class="n">RgbFg</span><span class="p">,</span> <span class="n">Sgr</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">RgbFg</span><span class="p">,</span> <span class="n">Sgr</span><span class="p">,</span> <span class="n">Style</span><span class="p">,</span> <span class="n">ef</span><span class="p">,</span> <span class="n">fg</span><span class="p">,</span> <span class="n">rs</span>
 
 <span class="n">fg</span><span class="o">.</span><span class="n">blue_bold</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">RgbFg</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">Sgr</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="n">fg</span><span class="o">.</span><span class="n">green_italic</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">fg</span><span class="o">.</span><span class="n">green</span><span class="p">,</span> <span class="n">ef</span><span class="o">.</span><span class="n">i</span><span class="p">)</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">blue_bold</span> <span class="o">+</span> <span class="s1">&#39;This text has bold blue fg.&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">all</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">green_italic</span> <span class="o">+</span> <span class="s1">&#39;This text has italic green fg&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">all</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">blue_bold</span> <span class="o">+</span> <span class="s2">&quot;This text has bold blue fg.&quot;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">all</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">green_italic</span> <span class="o">+</span> <span class="s2">&quot;This text has italic green fg&quot;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">all</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="render-types">
 <h2>Render Types<a class="headerlink" href="#render-types" title="Permalink to this headline">¶</a></h2>
 <p>These are the render-types, which you can use to create custom styles:</p>
-<dl class="class">
+<dl class="py class">
 <dt id="sty.Sgr">
-<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">Sgr</code><span class="sig-paren">(</span><em class="sig-param">num</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#Sgr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Sgr" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">Sgr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#Sgr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Sgr" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define SGR styling rule.</p>
 <p>More info about SGR parameters: <a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code#SGR">https://en.wikipedia.org/wiki/ANSI_escape_code#SGR</a></p>
 <dl class="field-list simple">
@@ -237,9 +236,9 @@ and create new customized register-objects from them.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="sty.EightbitFg">
-<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">EightbitFg</code><span class="sig-paren">(</span><em class="sig-param">num</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#EightbitFg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.EightbitFg" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">EightbitFg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#EightbitFg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.EightbitFg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define Eightbit Foreground.</p>
 <p>More info about 8-bit terminal colors: <a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit">https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit</a></p>
 <dl class="field-list simple">
@@ -249,9 +248,9 @@ and create new customized register-objects from them.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="sty.EightbitBg">
-<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">EightbitBg</code><span class="sig-paren">(</span><em class="sig-param">num</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#EightbitBg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.EightbitBg" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">EightbitBg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#EightbitBg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.EightbitBg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define Eightbit Background.</p>
 <p>More info about 8-bit terminal colors: <a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit">https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit</a></p>
 <dl class="field-list simple">
@@ -261,9 +260,9 @@ and create new customized register-objects from them.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="sty.RgbFg">
-<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">RgbFg</code><span class="sig-paren">(</span><em class="sig-param">r</em>, <em class="sig-param">g</em>, <em class="sig-param">b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#RgbFg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.RgbFg" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">RgbFg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">g</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#RgbFg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.RgbFg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define RGB Foreground.</p>
 <p>More info about 24-bit terminal colors: <a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit">https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit</a></p>
 <dl class="field-list simple">
@@ -277,9 +276,9 @@ and create new customized register-objects from them.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="sty.RgbBg">
-<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">RgbBg</code><span class="sig-paren">(</span><em class="sig-param">r</em>, <em class="sig-param">g</em>, <em class="sig-param">b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#RgbBg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.RgbBg" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">sty.</code><code class="sig-name descname">RgbBg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">g</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/rendertype.html#RgbBg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.RgbBg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Define RGB Background.</p>
 <p>More info about 24-bit terminal colors: <a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit">https://en.wikipedia.org/wiki/ANSI_escape_code#24-bit</a></p>
 <dl class="field-list simple">
@@ -297,9 +296,9 @@ and create new customized register-objects from them.</p></li>
 <div class="section" id="changing-the-render-functions-for-a-register-object">
 <h2>Changing the render-functions for a register-object<a class="headerlink" href="#changing-the-render-functions-for-a-register-object" title="Permalink to this headline">¶</a></h2>
 <p>If you want to fix compatibility issues with old terminals, you might want to customize the render-functions.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="sty.Register.set_renderfunc">
-<code class="sig-prename descclassname">Register.</code><code class="sig-name descname">set_renderfunc</code><span class="sig-paren">(</span><em class="sig-param">rendertype</em>, <em class="sig-param">func</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/primitive.html#Register.set_renderfunc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Register.set_renderfunc" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">Register.</code><code class="sig-name descname">set_renderfunc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rendertype</span></em>, <em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/primitive.html#Register.set_renderfunc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Register.set_renderfunc" title="Permalink to this definition">¶</a></dt>
 <dd><p>With this method you can add or replace render-functions for a given register-object:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -309,17 +308,17 @@ and create new customized register-objects from them.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <p><strong>Example:</strong></p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">fg</span><span class="p">,</span> <span class="n">bg</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">bg</span><span class="p">,</span> <span class="n">fg</span>
 
 
 <span class="k">def</span> <span class="nf">my_eightbit_bg_render_func</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[48;5;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;m&#39;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[48;5;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;m&quot;</span>
 
 
 <span class="c1"># Replace fg render-function with the above bg render-function:</span>
@@ -334,9 +333,9 @@ and create new customized register-objects from them.</p></li>
 <div class="section" id="changing-the-call-behaviour-for-a-register-object">
 <h2>Changing the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> behaviour for a register-object<a class="headerlink" href="#changing-the-call-behaviour-for-a-register-object" title="Permalink to this headline">¶</a></h2>
 <p>Remember that you can call the register-objects like a function? You can change the behaviour for such calls.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="sty.Register.set_eightbit_call">
-<code class="sig-prename descclassname">Register.</code><code class="sig-name descname">set_eightbit_call</code><span class="sig-paren">(</span><em class="sig-param">rendertype</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/primitive.html#Register.set_eightbit_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Register.set_eightbit_call" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">Register.</code><code class="sig-name descname">set_eightbit_call</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rendertype</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/primitive.html#Register.set_eightbit_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Register.set_eightbit_call" title="Permalink to this definition">¶</a></dt>
 <dd><p>You can call a register-object directly. A call like this <code class="docutils literal notranslate"><span class="pre">fg(144)</span></code>
 is a Eightbit-call. With this method you can define the render-type for such calls.</p>
 <dl class="field-list simple">
@@ -344,14 +343,14 @@ is a Eightbit-call. With this method you can define the render-type for such cal
 <dd class="field-odd"><p><strong>rendertype</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RenderType</span></code>) – The new rendertype that is used for Eightbit-calls.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="sty.Register.set_rgb_call">
-<code class="sig-prename descclassname">Register.</code><code class="sig-name descname">set_rgb_call</code><span class="sig-paren">(</span><em class="sig-param">rendertype</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/primitive.html#Register.set_rgb_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Register.set_rgb_call" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">Register.</code><code class="sig-name descname">set_rgb_call</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rendertype</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sty/primitive.html#Register.set_rgb_call"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sty.Register.set_rgb_call" title="Permalink to this definition">¶</a></dt>
 <dd><p>You can call a register-object directly. A call like this <code class="docutils literal notranslate"><span class="pre">fg(10,</span> <span class="pre">42,</span> <span class="pre">255)</span></code>
 is a RGB-call. With this method you can define the render-type for such calls.</p>
 <dl class="field-list simple">
@@ -359,13 +358,13 @@ is a RGB-call. With this method you can define the render-type for such calls.</
 <dd class="field-odd"><p><strong>rendertype</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RenderType</span></code>) – The new rendertype that is used for RGB-calls.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <p><strong>Example</strong>:</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">fg</span><span class="p">,</span> <span class="n">rs</span><span class="p">,</span> <span class="n">renderfunc</span><span class="p">,</span> <span class="n">EightbitBg</span><span class="p">,</span> <span class="n">RgbBg</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">EightbitBg</span><span class="p">,</span> <span class="n">RgbBg</span><span class="p">,</span> <span class="n">fg</span><span class="p">,</span> <span class="n">renderfunc</span><span class="p">,</span> <span class="n">rs</span>
 
 <span class="n">fg</span><span class="o">.</span><span class="n">set_renderfunc</span><span class="p">(</span><span class="n">EightbitBg</span><span class="p">,</span> <span class="n">renderfunc</span><span class="o">.</span><span class="n">eightbit_bg</span><span class="p">)</span>
 <span class="n">fg</span><span class="o">.</span><span class="n">set_renderfunc</span><span class="p">(</span><span class="n">RgbBg</span><span class="p">,</span> <span class="n">renderfunc</span><span class="o">.</span><span class="n">rgb_bg</span><span class="p">)</span>
@@ -373,8 +372,8 @@ is a RGB-call. With this method you can define the render-type for such calls.</
 <span class="n">fg</span><span class="o">.</span><span class="n">set_eightbit_call</span><span class="p">(</span><span class="n">EightbitBg</span><span class="p">)</span>
 <span class="n">fg</span><span class="o">.</span><span class="n">set_rgb_call</span><span class="p">(</span><span class="n">RgbBg</span><span class="p">)</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">201</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;I have a pink bg since fg was replaced with bg.&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">all</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;I have a red bg since fg was replaced with bg.&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">all</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">201</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;I have a pink bg since fg was replaced with bg.&quot;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">all</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;I have a red bg since fg was replaced with bg.&quot;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">all</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -390,13 +389,12 @@ to extend the default register-classes and create new register-objects from them
 <li><p>You aren’t mutating sty’s <em>global</em> register-objects (<code class="docutils literal notranslate"><span class="pre">sty.ef</span></code>, <code class="docutils literal notranslate"><span class="pre">sty.fg</span></code>, etc.).
 This is important for library projects to prevent conflicts with other packages that use sty.</p></li>
 </ul>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">FgRegister</span><span class="p">,</span> <span class="n">Sgr</span><span class="p">,</span> <span class="n">RgbFg</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">FgRegister</span><span class="p">,</span> <span class="n">RgbFg</span><span class="p">,</span> <span class="n">Sgr</span>
 
 <span class="c1"># Extend the default foreground register-class.</span>
 
 
 <span class="k">class</span> <span class="nc">MyFgRegister</span><span class="p">(</span><span class="n">FgRegister</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -420,26 +418,25 @@ This is important for library projects to prevent conflicts with other packages 
 <span class="n">c</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">orange</span> <span class="o">+</span> <span class="s2">&quot;I have orange foreground&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">green</span> <span class="o">+</span> <span class="s2">&quot;I have a green foreground&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="a-register-class-from-scratch">
 <h2>A register-class from scratch<a class="headerlink" href="#a-register-class-from-scratch" title="Permalink to this headline">¶</a></h2>
 <p>This example shows how to create a complete register class from scratch, including custom render-functions:</p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">Register</span><span class="p">,</span> <span class="n">renderfunc</span><span class="p">,</span> <span class="n">Sgr</span><span class="p">,</span> <span class="n">EightbitFg</span><span class="p">,</span> <span class="n">RgbFg</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">EightbitFg</span><span class="p">,</span> <span class="n">Register</span><span class="p">,</span> <span class="n">RgbFg</span><span class="p">,</span> <span class="n">Sgr</span><span class="p">,</span> <span class="n">renderfunc</span>
 
 
 <span class="k">def</span> <span class="nf">my_eightbit_fg_render_func</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[38;5;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;m&#39;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[38;5;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;m&quot;</span>
 
 
 <span class="k">def</span> <span class="nf">my_rgb_fg_render_func</span><span class="p">(</span><span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[38;2;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;m&#39;</span>
+    <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[38;2;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;;&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;m&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">FgRegister</span><span class="p">(</span><span class="n">Register</span><span class="p">):</span>
-
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -468,7 +465,7 @@ This is important for library projects to prevent conflicts with other packages 
 <span class="n">b</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">red</span> <span class="o">+</span> <span class="s2">&quot;I have red foreground&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">green</span> <span class="o">+</span> <span class="s2">&quot;I have green foreground&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 </pre></div>
 </div>

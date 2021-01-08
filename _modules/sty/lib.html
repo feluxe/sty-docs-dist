@@ -22,10 +22,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
     
 
     
@@ -64,7 +63,7 @@
             
             
               <div class="version">
-                1.0.0-beta.12
+                1.0.0-rc.0
               </div>
             
           
@@ -182,7 +181,7 @@
 <span class="sd">    :param objects: Pass multiple register-objects to the function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">err</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span>
-        <span class="s2">&quot;The mute() method can only be used with objects that inherit &quot;</span>\
+        <span class="s2">&quot;The mute() method can only be used with objects that inherit &quot;</span>
         <span class="s2">&quot;from the &#39;Register class&#39;.&quot;</span>
     <span class="p">)</span>
     <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
@@ -198,14 +197,13 @@
 <span class="sd">    :param objects: Pass multiple register-objects to the function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">err</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span>
-        <span class="s2">&quot;The unmute() method can only be used with objects that inherit &quot;</span>\
+        <span class="s2">&quot;The unmute() method can only be used with objects that inherit &quot;</span>
         <span class="s2">&quot;from the &#39;Register class&#39;.&quot;</span>
     <span class="p">)</span>
     <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objects</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Register</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">err</span>
         <span class="n">obj</span><span class="o">.</span><span class="n">unmute</span><span class="p">()</span></div>
-
 </pre></div>
 
            </div>

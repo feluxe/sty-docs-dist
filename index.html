@@ -11,7 +11,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Description &mdash; sty - python</title>
+  <title>News &mdash; sty - python</title>
   
 
   
@@ -25,10 +25,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
     
 
     
@@ -68,7 +67,7 @@
             
             
               <div class="version">
-                1.0.0-beta.12
+                1.0.0-rc.0
               </div>
             
           
@@ -158,7 +157,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Description</li>
+      <li>News</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,6 +180,19 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<div class="section" id="news">
+<h1>News<a class="headerlink" href="#news" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="release-1-0-0-rc-0-january-08-2021">
+<h2>Release 1.0.0-rc.0 (January 08. 2021)<a class="headerlink" href="#release-1-0-0-rc-0-january-08-2021" title="Permalink to this headline">¶</a></h2>
+<p>Sty version <cite>1.0.0</cite> is now feature complete.</p>
+<ul class="simple">
+<li><p>I’m going to support Python version <cite>&gt;=3.7</cite> indefinitely.</p></li>
+<li><p>Sty will follow <cite>semver</cite> so there won’t be any breaking changes for version <cite>1.x.x</cite>. This release is the last one with breaking changes.</p></li>
+<li><p>This is a pre-release (<cite>rc.0</cite>). I’ll release <cite>1.0.0</cite> in a couple of month if no major bugs are reported.</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/feluxe/sty/releases/tag/1.0.0-rc.0">Breaking Changes</a></p>
+</div>
+</div>
 <div class="section" id="description">
 <h1>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
@@ -198,23 +210,23 @@ is decoupled from color palettes and terminal implementations.</p>
 <div class="section" id="code-example">
 <h1>Code Example<a class="headerlink" href="#code-example" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">fg</span><span class="p">,</span> <span class="n">bg</span><span class="p">,</span> <span class="n">ef</span><span class="p">,</span> <span class="n">rs</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">bg</span><span class="p">,</span> <span class="n">ef</span><span class="p">,</span> <span class="n">fg</span><span class="p">,</span> <span class="n">rs</span>
 
-<span class="n">foo</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">red</span> <span class="o">+</span> <span class="s1">&#39;This is red text!&#39;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
-<span class="n">bar</span> <span class="o">=</span> <span class="n">bg</span><span class="o">.</span><span class="n">blue</span> <span class="o">+</span> <span class="s1">&#39;This has a blue background!&#39;</span> <span class="o">+</span> <span class="n">bg</span><span class="o">.</span><span class="n">rs</span>
-<span class="n">baz</span> <span class="o">=</span> <span class="n">ef</span><span class="o">.</span><span class="n">italic</span> <span class="o">+</span> <span class="s1">&#39;This is italic text&#39;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">italic</span>
-<span class="n">qux</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">201</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;This is pink text using 8bit colors&#39;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
-<span class="n">qui</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;This is red text using 24bit colors.&#39;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">red</span> <span class="o">+</span> <span class="s2">&quot;This is red text!&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="n">bg</span><span class="o">.</span><span class="n">blue</span> <span class="o">+</span> <span class="s2">&quot;This has a blue background!&quot;</span> <span class="o">+</span> <span class="n">bg</span><span class="o">.</span><span class="n">rs</span>
+<span class="n">baz</span> <span class="o">=</span> <span class="n">ef</span><span class="o">.</span><span class="n">italic</span> <span class="o">+</span> <span class="s2">&quot;This is italic text&quot;</span> <span class="o">+</span> <span class="n">rs</span><span class="o">.</span><span class="n">italic</span>
+<span class="n">qux</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">201</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;This is pink text using 8bit colors&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
+<span class="n">qui</span> <span class="o">=</span> <span class="n">fg</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;This is red text using 24bit colors.&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
 <span class="c1"># Add custom colors:</span>
 
-<span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">Style</span><span class="p">,</span> <span class="n">RgbFg</span>
+<span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">RgbFg</span><span class="p">,</span> <span class="n">Style</span>
 
 <span class="n">fg</span><span class="o">.</span><span class="n">orange</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">RgbFg</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
 
-<span class="n">buf</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">orange</span> <span class="o">+</span> <span class="s1">&#39;Yay, Im orange.&#39;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
+<span class="n">buf</span> <span class="o">=</span> <span class="n">fg</span><span class="o">.</span><span class="n">orange</span> <span class="o">+</span> <span class="s2">&quot;Yay, Im orange.&quot;</span> <span class="o">+</span> <span class="n">fg</span><span class="o">.</span><span class="n">rs</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">,</span> <span class="n">qux</span><span class="p">,</span> <span class="n">qui</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="n">bar</span><span class="p">,</span> <span class="n">baz</span><span class="p">,</span> <span class="n">qux</span><span class="p">,</span> <span class="n">qui</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The code above will print like this in the terminal:</p>
