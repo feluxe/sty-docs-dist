@@ -176,9 +176,13 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">.rendertype</span> <span class="kn">import</span> <span class="n">RenderType</span>
+
+<span class="n">Renderfuncs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">RenderType</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]</span>
+
+<span class="n">StylingRule</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;Style&quot;</span><span class="p">,</span> <span class="n">RenderType</span><span class="p">]</span>
 
 
 <span class="k">class</span> <span class="nc">Style</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
@@ -198,40 +202,36 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-        <span class="bp">cls</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="bp">cls</span><span class="o">.</span><span class="n">rules</span> <span class="o">=</span> <span class="n">rules</span>
-        <span class="k">return</span> <span class="bp">cls</span>
+    <span class="n">rules</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">StylingRule</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">rules</span><span class="p">:</span> <span class="n">StylingRule</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Style&quot;</span><span class="p">:</span>
+        <span class="n">new_cls</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">new_cls</span><span class="p">,</span> <span class="s2">&quot;rules&quot;</span><span class="p">,</span> <span class="n">rules</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_cls</span>
 
 
 <span class="k">def</span> <span class="nf">_render_rules</span><span class="p">(</span>
-    <span class="n">renderfuncs</span><span class="p">,</span>
-    <span class="n">rules</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">RenderType</span><span class="p">]]:</span>
+    <span class="n">renderfuncs</span><span class="p">:</span> <span class="n">Renderfuncs</span><span class="p">,</span>
+    <span class="n">rules</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">StylingRule</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">StylingRule</span><span class="p">]]:</span>
 
     <span class="n">rendered</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">flattened_rules</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">flattened_rules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">StylingRule</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">RenderType</span><span class="p">):</span>
-        <span class="n">f1</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">renderfuncs</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">rules</span><span class="p">)]</span>
-        <span class="n">rendered</span> <span class="o">+=</span> <span class="n">f1</span><span class="p">(</span><span class="o">*</span><span class="n">rules</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
-        <span class="n">flattened_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rules</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
 
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">Style</span><span class="p">):</span>
-        <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">_render_rules</span><span class="p">(</span><span class="n">renderfuncs</span><span class="p">,</span> <span class="n">rules</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span>
-        <span class="n">rendered</span> <span class="o">+=</span> <span class="n">r1</span>
-        <span class="n">flattened_rules</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">RenderType</span><span class="p">):</span>
+            <span class="n">f1</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">renderfuncs</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">rule</span><span class="p">)]</span>
+            <span class="n">rendered</span> <span class="o">+=</span> <span class="n">f1</span><span class="p">(</span><span class="o">*</span><span class="n">rule</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+            <span class="n">flattened_rules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rule</span><span class="p">)</span>
 
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-
-        <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
-
-            <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">_render_rules</span><span class="p">(</span><span class="n">renderfuncs</span><span class="p">,</span> <span class="n">rule</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">Style</span><span class="p">):</span>
+            <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">_render_rules</span><span class="p">(</span><span class="n">renderfuncs</span><span class="p">,</span> <span class="n">rule</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span>
             <span class="n">rendered</span> <span class="o">+=</span> <span class="n">r1</span>
             <span class="n">flattened_rules</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
 
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Parameter &#39;rules&#39; must be of type Rule or Tuple[Rule].&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Parameter &#39;rules&#39; must be of type Iterable[Rule].&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">rendered</span><span class="p">,</span> <span class="n">flattened_rules</span>
 
@@ -243,31 +243,32 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">renderfuncs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">RenderType</span><span class="p">,</span> <span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">renderfuncs</span><span class="p">:</span> <span class="n">Renderfuncs</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eightbit_call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rgb_call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Style</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Style</span><span class="p">]]):</span>
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Style</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Style</span><span class="p">):</span>
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span><span class="p">:</span>
-                <span class="n">rendered_style</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="n">rendered_style</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">rendered</span><span class="p">,</span> <span class="n">rules</span> <span class="o">=</span> <span class="n">_render_rules</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">renderfuncs</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">rules</span><span class="p">)</span>
-                <span class="n">rendered_style</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">rendered</span><span class="p">)</span>
+                <span class="n">rendered_style</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="o">*</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">rendered</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rendered_style</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># TODO: Why do we need this??? What should be set here?</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function is to handle calls such as `fg(42)`, `bg(102, 49, 42)`, `fg(&#39;red&#39;)`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="c1"># # Return empty str if object is muted.</span>
+        <span class="c1"># Return empty str if object is muted.</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
@@ -291,35 +292,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">set_style</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">rules</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">RenderType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">RenderType</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DEPRECATED: This method will be removed in favour of the Style() type.</span>
-
-<span class="sd">        With this method, you can add or change styles for a register-object.</span>
-
-<span class="sd">        :param name: The field name for the new style.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">Style</span><span class="p">(</span><span class="o">*</span><span class="n">rules</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">get_style</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">RenderType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        DEPRECATED: This method will be removed in favour of the Style() type.</span>
-
-<span class="sd">        Retrieve styling rules from a register-object.</span>
-<span class="sd">        This is useful in case you want to compose new styles out of existing styles.</span>
-
-<span class="sd">        :param name: The name of the style for which you want to retrieve the styling rules.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">rules</span>
-
-<div class="viewcode-block" id="Register.set_eightbit_call"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_eightbit_call">[docs]</a>    <span class="k">def</span> <span class="nf">set_eightbit_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">RenderType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Register.set_eightbit_call"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_eightbit_call">[docs]</a>    <span class="k">def</span> <span class="nf">set_eightbit_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">RenderType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        You can call a register-object directly. A call like this ``fg(144)``</span>
 <span class="sd">        is a Eightbit-call. With this method you can define the render-type for such calls.</span>
@@ -329,7 +302,7 @@
         <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">renderfuncs</span><span class="p">[</span><span class="n">rendertype</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eightbit_call</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="Register.set_rgb_call"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_rgb_call">[docs]</a>    <span class="k">def</span> <span class="nf">set_rgb_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">RenderType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Register.set_rgb_call"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_rgb_call">[docs]</a>    <span class="k">def</span> <span class="nf">set_rgb_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">RenderType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        You can call a register-object directly. A call like this ``fg(10, 42, 255)``</span>
 <span class="sd">        is a RGB-call. With this method you can define the render-type for such calls.</span>
@@ -339,7 +312,7 @@
         <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">renderfuncs</span><span class="p">[</span><span class="n">rendertype</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rgb_call</span> <span class="o">=</span> <span class="n">func</span></div>
 
-<div class="viewcode-block" id="Register.set_renderfunc"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_renderfunc">[docs]</a>    <span class="k">def</span> <span class="nf">set_renderfunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">RenderType</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="Register.set_renderfunc"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_renderfunc">[docs]</a>    <span class="k">def</span> <span class="nf">set_renderfunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">RenderType</span><span class="p">],</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        With this method you can add or replace render-functions for a given register-object:</span>
 
@@ -355,7 +328,7 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">Style</span><span class="p">):</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Register.mute"><a class="viewcode-back" href="../../docs/muting.html#sty.Register.mute">[docs]</a>    <span class="k">def</span> <span class="nf">mute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Register.mute"><a class="viewcode-back" href="../../docs/muting.html#sty.Register.mute">[docs]</a>    <span class="k">def</span> <span class="nf">mute</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sometimes it is useful to disable the formatting for a register-object. You can</span>
 <span class="sd">        do so by invoking this method.</span>
@@ -367,7 +340,7 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">Style</span><span class="p">):</span>
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Register.unmute"><a class="viewcode-back" href="../../docs/muting.html#sty.Register.unmute">[docs]</a>    <span class="k">def</span> <span class="nf">unmute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Register.unmute"><a class="viewcode-back" href="../../docs/muting.html#sty.Register.unmute">[docs]</a>    <span class="k">def</span> <span class="nf">unmute</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Use this method to unmute a previously muted register object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -399,7 +372,7 @@
         <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_dict</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;StyleRegister&quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())(</span><span class="o">*</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="Register.copy"><a class="viewcode-back" href="../../docs/exporting.html#sty.Register.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Register.copy"><a class="viewcode-back" href="../../docs/exporting.html#sty.Register.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Register&quot;</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make a deepcopy of a register-object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

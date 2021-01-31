@@ -303,7 +303,7 @@ and create new customized register-objects from them.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rendertype</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RenderType</span></code>) – The render type for which the new renderfunc is used.</p></li>
+<li><p><strong>rendertype</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">RenderType</span></code>]) – The render type for which the new renderfunc is used.</p></li>
 <li><p><strong>func</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>) – The new render function.</p></li>
 </ul>
 </dd>
@@ -314,7 +314,7 @@ and create new customized register-objects from them.</p></li>
 </dd></dl>
 
 <p><strong>Example:</strong></p>
-<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">bg</span><span class="p">,</span> <span class="n">fg</span>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sty</span> <span class="kn">import</span> <span class="n">bg</span><span class="p">,</span> <span class="n">fg</span><span class="p">,</span> <span class="n">EightbitFg</span>
 
 
 <span class="k">def</span> <span class="nf">my_eightbit_bg_render_func</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -340,7 +340,7 @@ and create new customized register-objects from them.</p></li>
 is a Eightbit-call. With this method you can define the render-type for such calls.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>rendertype</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RenderType</span></code>) – The new rendertype that is used for Eightbit-calls.</p>
+<dd class="field-odd"><p><strong>rendertype</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">RenderType</span></code>]) – The new rendertype that is used for Eightbit-calls.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -355,7 +355,7 @@ is a Eightbit-call. With this method you can define the render-type for such cal
 is a RGB-call. With this method you can define the render-type for such calls.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>rendertype</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">RenderType</span></code>) – The new rendertype that is used for RGB-calls.</p>
+<dd class="field-odd"><p><strong>rendertype</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Type</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">RenderType</span></code>]) – The new rendertype that is used for RGB-calls.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
