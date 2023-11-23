@@ -32,7 +32,7 @@
             <img src="../../_static/logo_website.jpg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.0.4
+                1.0.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -97,7 +97,7 @@
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">.rendertype</span> <span class="kn">import</span> <span class="n">RenderType</span>
+<span class="kn">from</span> <span class="nn">sty.rendertype</span> <span class="kn">import</span> <span class="n">RenderType</span>
 
 <span class="n">Renderfuncs</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">RenderType</span><span class="p">],</span> <span class="n">Callable</span><span class="p">]</span>
 
@@ -105,7 +105,7 @@
 
 
 <span class="k">class</span> <span class="nc">Style</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This type stores the different styling rules for the registers and the resulting</span>
 <span class="sd">    ANSI-sequence as a string.</span>
 
@@ -118,7 +118,6 @@
 <span class="sd">        isinstance(fg.orange, str) # True</span>
 
 <span class="sd">        str(fg.orange) # &#39;\x1b[38;2;1;5;10m\x1b[1m&#39; (The ASNI sequence for orange and bold)</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">rules</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">StylingRule</span><span class="p">]</span>
@@ -133,12 +132,10 @@
     <span class="n">renderfuncs</span><span class="p">:</span> <span class="n">Renderfuncs</span><span class="p">,</span>
     <span class="n">rules</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">StylingRule</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">StylingRule</span><span class="p">]]:</span>
-
     <span class="n">rendered</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
     <span class="n">flattened_rules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">StylingRule</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">rule</span> <span class="ow">in</span> <span class="n">rules</span><span class="p">:</span>
-
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rule</span><span class="p">,</span> <span class="n">RenderType</span><span class="p">):</span>
             <span class="n">f1</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">=</span> <span class="n">renderfuncs</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">rule</span><span class="p">)]</span>
             <span class="n">rendered</span> <span class="o">+=</span> <span class="n">f1</span><span class="p">(</span><span class="o">*</span><span class="n">rule</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
@@ -156,7 +153,7 @@
 
 
 <span class="k">class</span> <span class="nc">Register</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is the base Register class. All default registers (fg, bg, ef, rs) are</span>
 <span class="sd">    created from this class. You can use it to create your own custom registers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -168,9 +165,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rgb_call</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Style</span><span class="p">):</span>
-
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Style</span><span class="p">):</span>
-
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span><span class="p">:</span>
                 <span class="n">rendered_style</span> <span class="o">=</span> <span class="n">Style</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">rules</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -183,7 +178,7 @@
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        This function is to handle calls such as `fg(42)`, `bg(102, 49, 42)`, `fg(&#39;red&#39;)`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -194,7 +189,6 @@
         <span class="n">len_args</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">len_args</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-
             <span class="c1"># If input is an 8bit color code, run 8bit render function.</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">eightbit_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -212,7 +206,7 @@
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
 
 <div class="viewcode-block" id="Register.set_eightbit_call"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_eightbit_call">[docs]</a>    <span class="k">def</span> <span class="nf">set_eightbit_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">RenderType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        You can call a register-object directly. A call like this ``fg(144)``</span>
 <span class="sd">        is a Eightbit-call. With this method you can define the render-type for such calls.</span>
 
@@ -222,7 +216,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">eightbit_call</span> <span class="o">=</span> <span class="n">func</span></div>
 
 <div class="viewcode-block" id="Register.set_rgb_call"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_rgb_call">[docs]</a>    <span class="k">def</span> <span class="nf">set_rgb_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">RenderType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        You can call a register-object directly. A call like this ``fg(10, 42, 255)``</span>
 <span class="sd">        is a RGB-call. With this method you can define the render-type for such calls.</span>
 
@@ -232,7 +226,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">rgb_call</span> <span class="o">=</span> <span class="n">func</span></div>
 
 <div class="viewcode-block" id="Register.set_renderfunc"><a class="viewcode-back" href="../../docs/customizing.html#sty.Register.set_renderfunc">[docs]</a>    <span class="k">def</span> <span class="nf">set_renderfunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rendertype</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">RenderType</span><span class="p">],</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        With this method you can add or replace render-functions for a given register-object:</span>
 
 <span class="sd">        :param rendertype: The render type for which the new renderfunc is used.</span>
@@ -248,7 +242,7 @@
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Register.mute"><a class="viewcode-back" href="../../docs/muting.html#sty.Register.mute">[docs]</a>    <span class="k">def</span> <span class="nf">mute</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Sometimes it is useful to disable the formatting for a register-object. You can</span>
 <span class="sd">        do so by invoking this method.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -260,7 +254,7 @@
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Register.unmute"><a class="viewcode-back" href="../../docs/muting.html#sty.Register.unmute">[docs]</a>    <span class="k">def</span> <span class="nf">unmute</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Use this method to unmute a previously muted register object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_muted</span> <span class="o">=</span> <span class="kc">False</span>
@@ -271,28 +265,26 @@
                 <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Register.as_dict"><a class="viewcode-back" href="../../docs/exporting.html#sty.Register.as_dict">[docs]</a>    <span class="k">def</span> <span class="nf">as_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Export color register as dict.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">items</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
             <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="nb">str</span><span class="p">):</span>
-
                 <span class="n">items</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">))})</span>
 
         <span class="k">return</span> <span class="n">items</span></div>
 
 <div class="viewcode-block" id="Register.as_namedtuple"><a class="viewcode-back" href="../../docs/exporting.html#sty.Register.as_namedtuple">[docs]</a>    <span class="k">def</span> <span class="nf">as_namedtuple</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Export color register as namedtuple.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_dict</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;StyleRegister&quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())(</span><span class="o">*</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Register.copy"><a class="viewcode-back" href="../../docs/exporting.html#sty.Register.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Register&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Make a deepcopy of a register-object.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
