@@ -3,6 +3,7 @@
    WARNING: Do not remove the 'Contents' section below.
 
 
+
 .. image:: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_logo_aliased.svg
    :target: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_logo_aliased.svg
    :alt: sty_logo
@@ -27,6 +28,14 @@
    :target: https://raw.githubusercontent.com/feluxe/sty/master/assets/README_demo.png
    :alt: sty_demo
    :width: 100%
+
+
+Release 1.0.6 (November 27. 2023)
+---------------------------------
+
+Code Changes:
+
+* Use PEP-484 compatible exports to satisfy static type checkers.
 
 
 Release 1.0.5 (November 22. 2023)
@@ -117,7 +126,6 @@ You can use the `Register` class or the default registers `FgRegister`, `BgRegis
             # ...
 
      fg = MyFgRegister()
-
 
 
 ..
